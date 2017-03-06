@@ -7,13 +7,17 @@
 /******************************************************************************
 | defines
 |--------------------------------------------------------------------------------------------*/
-#define period				7143  // 21KHz对应时钟数，TBCLK = SYSCLKOUT
+#define DABperiod				7143  // 21KHz对应时钟数，TBCLK = SYSCLKOUT
+#define Flegperiod				21429  // 7KHz对应时钟数，TBCLK = SYSCLKOUT
+//#define DABperiod				5000  // 3.33KHz对应时钟数，TBCLK = SYSCLKOUT
+//#define Flegperiod				15000  // 10KHz对应时钟数，TBCLK = SYSCLKOUT
 #define prediv				0  // 预分频
-#define DeadZone			150   // 死区1us
+#define DeadZone			220   // 死区1us
 
 /******************************************************************************
 | variables
 |--------------------------------------------------------------------------------------------*/
+extern Uint16 PhaSft;
 
 /******************************************************************************
 | local functions prototypes

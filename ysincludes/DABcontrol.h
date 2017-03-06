@@ -19,17 +19,21 @@
 #define np 2
 
 /* control period */
-#define Ts 4.7619e-5  // 21kHz
+#define DAB_Ts 4.7619e-5  // 21kHz
+#define Fleg_Ts 14.2857e-5  // 7kHz
+//#define DAB_Ts 0.3333e-4  // 21kHz
+//#define Fleg_Ts 1e-4  // 10kHz
 
 /* PI parameters */
   // Ulcmd
-#define Kp_Ulcmd 10
-#define Ki_Ulcmd 500
-#define Uplim_Ulcmd
-#define Downlim_Ulcmd
+//#define Kp_Ulcmd 0.5
+//#define Ki_Ulcmd 0
+#define Uplim_Ulcmd 1
+#define Downlim_Ulcmd -1
 
 /* auxiliary */
 #define pi 3.1415926
+//#define IgRefRatio 0.2
 
 /******************************************************************************
 | types
@@ -64,10 +68,13 @@ extern double Ig;
   // 电压
 extern double Ulcmd;
   // 电流
+extern double IgRefRatio;
 extern double Igcmd;
 
 /* PI 变量 */
-extern double Iglasterr;
+extern double Kp_Ulcmd;
+extern double Ki_Ulcmd;
+extern double Ig_intgrt;
 
 /******************************************************************************
 | local functions prototypes
@@ -77,6 +84,6 @@ extern double Iglasterr;
 | exported functions
 |----------------------------------------------------------------------------*/
 /* PI module */  
-extern double PImodule(double Kp, double Ki, double output, double err, double *lasterr, double Uplim, double Downlim);
+extern double PImodule(double Kp, double Ki, double err, double *intgrt, double Uplim, double Downlim, double Ts);
 extern double Integrator(double paramin, double sum, double ts);
-extern double LPfilter(double paramin, double lasty, double wc, double ts);
+extern double LPfilter(double x, double lasty, double wc, double ts);
