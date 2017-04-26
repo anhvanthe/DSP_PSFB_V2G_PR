@@ -9,6 +9,7 @@ C_SRCS += \
 ../yssources/ysADC.c \
 ../yssources/ysCAN.c \
 ../yssources/ysDAC.c \
+../yssources/ysECAP.c \
 ../yssources/ysPORT.c \
 ../yssources/ysPWM.c \
 ../yssources/ysSCI.c \
@@ -20,6 +21,7 @@ OBJS += \
 ./yssources/ysADC.obj \
 ./yssources/ysCAN.obj \
 ./yssources/ysDAC.obj \
+./yssources/ysECAP.obj \
 ./yssources/ysPORT.obj \
 ./yssources/ysPWM.obj \
 ./yssources/ysSCI.obj \
@@ -31,6 +33,7 @@ C_DEPS += \
 ./yssources/ysADC.pp \
 ./yssources/ysCAN.pp \
 ./yssources/ysDAC.pp \
+./yssources/ysECAP.pp \
 ./yssources/ysPORT.pp \
 ./yssources/ysPWM.pp \
 ./yssources/ysSCI.pp \
@@ -42,6 +45,7 @@ C_DEPS__QUOTED += \
 "yssources\ysADC.pp" \
 "yssources\ysCAN.pp" \
 "yssources\ysDAC.pp" \
+"yssources\ysECAP.pp" \
 "yssources\ysPORT.pp" \
 "yssources\ysPWM.pp" \
 "yssources\ysSCI.pp" \
@@ -53,6 +57,7 @@ OBJS__QUOTED += \
 "yssources\ysADC.obj" \
 "yssources\ysCAN.obj" \
 "yssources\ysDAC.obj" \
+"yssources\ysECAP.obj" \
 "yssources\ysPORT.obj" \
 "yssources\ysPWM.obj" \
 "yssources\ysSCI.obj" \
@@ -64,6 +69,7 @@ C_SRCS__QUOTED += \
 "../yssources/ysADC.c" \
 "../yssources/ysCAN.c" \
 "../yssources/ysDAC.c" \
+"../yssources/ysECAP.c" \
 "../yssources/ysPORT.c" \
 "../yssources/ysPWM.c" \
 "../yssources/ysSCI.c" \

@@ -6,7 +6,7 @@
 /******************************************************************************
 | variables
 |--------------------------------------------------------------------------------------------*/
-extern Uint16 PhaSft = DABperiod * 0;  // 相移时钟数
+extern Uint16 PhaSft = DABperiod * 0.08;  // 相移时钟数 > 0.08（4us, 28.8度）？
 
 /******************************************************************************
 | functions
@@ -23,8 +23,8 @@ void InitPWM()
 	EPwm1Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
 	EPwm1Regs.TBCTL.bit.PHSEN = TB_ENABLE;
 
-	EPwm1Regs.CMPA.half.CMPA = PhaSft * 0.5; // duty_cycle = 0.5
-	EPwm1Regs.CMPB = DABperiod * 0.5 + PhaSft * 0.5;
+	EPwm1Regs.CMPA.half.CMPA = 0; // duty_cycle = 0.5
+	EPwm1Regs.CMPB = DABperiod * 0.5;
 	EPwm1Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
 	EPwm1Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
 	EPwm1Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;  // TBCTR = 0时装载
@@ -52,8 +52,8 @@ void InitPWM()
 	EPwm2Regs.TBCTL.bit.SYNCOSEL = TB_SYNC_IN;
 	EPwm2Regs.TBCTL.bit.PHSEN = TB_ENABLE;
 
-	EPwm2Regs.CMPA.half.CMPA = PhaSft * 0.5 + PhaSft; // duty_cycle = 0.5
-	EPwm2Regs.CMPB = DABperiod * 0.5 + PhaSft * 0.5 + PhaSft;
+	EPwm2Regs.CMPA.half.CMPA = PhaSft; // duty_cycle = 0.5
+	EPwm2Regs.CMPB = DABperiod * 0.5 + PhaSft;
 	EPwm2Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
 	EPwm2Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
 	EPwm2Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;  // TBCTR = 0时装载

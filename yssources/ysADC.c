@@ -100,6 +100,7 @@ void ParallelRD(double *buf, Uint16 Nospl)
 
     for(i=0; i<Nospl ;i++)
 	{
-       buf[i]=addat[i]*sRange/32768.0;
+       //buf[i]=addat[i]*sRange/32768.0;
+    	buf[i]=addat[i]*3.05176e-4;
 	}
 }

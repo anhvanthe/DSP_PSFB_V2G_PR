@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/Program Files/ti/ccsv6/tools/compiler/c2000_6.2.5
+CG_TOOL_ROOT := C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
@@ -22,6 +22,7 @@ $(GEN_CMDS__FLAG) \
 "./yssources/ysSCI.obj" \
 "./yssources/ysPWM.obj" \
 "./yssources/ysPORT.obj" \
+"./yssources/ysECAP.obj" \
 "./yssources/ysDAC.obj" \
 "./yssources/ysCAN.obj" \
 "./yssources/ysADC.obj" \
@@ -131,40 +132,40 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-DAB_CHARGE.out \
+DAB_CHARGE_5kHz.out \
 
 EXE_OUTPUTS__QUOTED += \
-"DAB_CHARGE.out" \
+"DAB_CHARGE_5kHz.out" \
 
 BIN_OUTPUTS += \
-DAB_CHARGE.hex \
+DAB_CHARGE_5kHz.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"DAB_CHARGE.hex" \
+"DAB_CHARGE_5kHz.hex" \
 
 
 # All Target
-all: DAB_CHARGE.out
+all: DAB_CHARGE_5kHz.out
 
 # Tool invocations
-DAB_CHARGE.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+DAB_CHARGE_5kHz.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/Program Files/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"DAB_CHARGE.map" --stack_size=0x300 --warn_sections -i"C:/Program Files/ti/ccsv6/tools/compiler/c2000_6.2.5/lib" -i"C:/Program Files/ti/ccsv6/tools/compiler/c2000_6.2.5/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="DAB_CHARGE_linkInfo.xml" --rom_model -o "DAB_CHARGE.out" $(ORDERED_OBJS)
+	"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"DAB_CHARGE_5kHz.map" --stack_size=0x300 --warn_sections -i"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/lib" -i"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="DAB_CHARGE_5kHz_linkInfo.xml" --rom_model -o "DAB_CHARGE_5kHz.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-DAB_CHARGE.hex: $(EXE_OUTPUTS)
+DAB_CHARGE_5kHz.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/Program Files/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/hex2000"  -o "DAB_CHARGE.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/bin/hex2000"  -o "DAB_CHARGE_5kHz.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "yssources\DABcontrol.pp" "yssources\main.pp" "yssources\ysADC.pp" "yssources\ysCAN.pp" "yssources\ysDAC.pp" "yssources\ysPORT.pp" "yssources\ysPWM.pp" "yssources\ysSCI.pp" "yssources\ysSPI.pp" "source\DSP2833x_CpuTimers.pp" "source\DSP2833x_DefaultIsr.pp" "source\DSP2833x_GlobalVariableDefs.pp" "source\DSP2833x_PieCtrl.pp" "source\DSP2833x_PieVect.pp" "source\DSP2833x_SysCtrl.pp" "source\DSP2833x_Xintf.pp" 
-	-$(RM) "yssources\DABcontrol.obj" "yssources\main.obj" "yssources\ysADC.obj" "yssources\ysCAN.obj" "yssources\ysDAC.obj" "yssources\ysPORT.obj" "yssources\ysPWM.obj" "yssources\ysSCI.obj" "yssources\ysSPI.obj" "source\DSP2833x_ADC_cal.obj" "source\DSP2833x_CodeStartBranch.obj" "source\DSP2833x_CpuTimers.obj" "source\DSP2833x_DefaultIsr.obj" "source\DSP2833x_GlobalVariableDefs.obj" "source\DSP2833x_PieCtrl.obj" "source\DSP2833x_PieVect.obj" "source\DSP2833x_SysCtrl.obj" "source\DSP2833x_Xintf.obj" "source\DSP2833x_usDelay.obj" 
+	-$(RM) "yssources\DABcontrol.pp" "yssources\main.pp" "yssources\ysADC.pp" "yssources\ysCAN.pp" "yssources\ysDAC.pp" "yssources\ysECAP.pp" "yssources\ysPORT.pp" "yssources\ysPWM.pp" "yssources\ysSCI.pp" "yssources\ysSPI.pp" "source\DSP2833x_CpuTimers.pp" "source\DSP2833x_DefaultIsr.pp" "source\DSP2833x_GlobalVariableDefs.pp" "source\DSP2833x_PieCtrl.pp" "source\DSP2833x_PieVect.pp" "source\DSP2833x_SysCtrl.pp" "source\DSP2833x_Xintf.pp" 
+	-$(RM) "yssources\DABcontrol.obj" "yssources\main.obj" "yssources\ysADC.obj" "yssources\ysCAN.obj" "yssources\ysDAC.obj" "yssources\ysECAP.obj" "yssources\ysPORT.obj" "yssources\ysPWM.obj" "yssources\ysSCI.obj" "yssources\ysSPI.obj" "source\DSP2833x_ADC_cal.obj" "source\DSP2833x_CodeStartBranch.obj" "source\DSP2833x_CpuTimers.obj" "source\DSP2833x_DefaultIsr.obj" "source\DSP2833x_GlobalVariableDefs.obj" "source\DSP2833x_PieCtrl.obj" "source\DSP2833x_PieVect.obj" "source\DSP2833x_SysCtrl.obj" "source\DSP2833x_Xintf.obj" "source\DSP2833x_usDelay.obj" 
 	-$(RM) "source\DSP2833x_ADC_cal.pp" "source\DSP2833x_CodeStartBranch.pp" "source\DSP2833x_usDelay.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '

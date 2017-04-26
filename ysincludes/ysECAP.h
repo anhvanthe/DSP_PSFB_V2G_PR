@@ -3,16 +3,12 @@
 |--------------------------------------------------------------------------------------------*/
 #include "DSP2833x_Device.h"     // DSP2833x Headerfile Include File
 #include "DSP2833x_Examples.h"   // DSP2833x Examples Include File
+#include "ysPWM.h"
 
 /******************************************************************************
 | defines
 |--------------------------------------------------------------------------------------------*/
-#define DABperiod				7500  // 20KHz对应时钟数，TBCLK = SYSCLKOUT
-#define Flegperiod				30000  // 5KHz对应时钟数，TBCLK = SYSCLKOUT
-//#define DABperiod				5000  // 3.33KHz对应时钟数，TBCLK = SYSCLKOUT
-//#define Flegperiod				15000  // 10KHz对应时钟数，TBCLK = SYSCLKOUT
-#define prediv				0  // 预分频
-#define DeadZone			220   // 死区1.5us
+#define NoneOverlap			150   // 非重叠时间1us
 
 /******************************************************************************
 | variables
@@ -22,4 +18,4 @@ extern Uint16 PhaSft;
 /******************************************************************************
 | local functions prototypes
 |--------------------------------------------------------------------------------------------*/
-void InitPWM(void);
+void InitECAP(void);

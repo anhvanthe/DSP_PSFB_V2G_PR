@@ -34,15 +34,23 @@ void InitPORT()
 	GpioCtrlRegs.GPAMUX1.bit.GPIO10 = 1;
 	GpioCtrlRegs.GPAMUX1.bit.GPIO11 = 1;
 
+	// ECAP1-2
+	//GpioCtrlRegs.GPAPUD.bit.GPIO24 = 0;
+	GpioCtrlRegs.GPAPUD.bit.GPIO25 = 0;
+	GpioCtrlRegs.GPAPUD.bit.GPIO26 = 0;
+	//GpioCtrlRegs.GPAMUX2.bit.GPIO24 = 1;
+	GpioCtrlRegs.GPAMUX2.bit.GPIO25 = 1;
+	GpioCtrlRegs.GPAMUX2.bit.GPIO26 = 1;
+
 	//ad7606
-	GpioCtrlRegs.GPAPUD.bit.GPIO14 = 0;    // Enable pull-up for GPIO14 (SCITXDB)
-	GpioCtrlRegs.GPAPUD.bit.GPIO15 = 0;    // Enable pull-up for GPIO15 (SCIRXDB)
-	GpioCtrlRegs.GPAQSEL1.bit.GPIO14 = 3;  // Asynch input GPIO15 (SCIRXDB)
-	GpioCtrlRegs.GPAMUX1.bit.GPIO14 = 0;   // Configure GPIO14 for SCITXDB operation
-	GpioCtrlRegs.GPAMUX1.bit.GPIO15 = 0;   // Configure GPIO15 for SCIRXDB operation
-	GpioDataRegs.GPACLEAR.bit.GPIO15 = 1;  //
-	GpioCtrlRegs.GPADIR.bit.GPIO15 = 1;  //
-	GpioCtrlRegs.GPADIR.bit.GPIO14 = 0;  //
+	GpioCtrlRegs.GPAPUD.bit.GPIO14 = 0;
+	GpioCtrlRegs.GPAPUD.bit.GPIO15 = 0;
+	GpioCtrlRegs.GPAQSEL1.bit.GPIO14 = 3;
+	GpioCtrlRegs.GPAMUX1.bit.GPIO14 = 0;
+	GpioCtrlRegs.GPAMUX1.bit.GPIO15 = 0;
+	GpioDataRegs.GPACLEAR.bit.GPIO15 = 1;
+	GpioCtrlRegs.GPADIR.bit.GPIO15 = 1;
+	GpioCtrlRegs.GPADIR.bit.GPIO14 = 0;
 
 	//xd15-0
 	GpioCtrlRegs.GPCMUX1.bit.GPIO64 = 3;  // XD15

@@ -19,17 +19,19 @@
 #define np 2
 
 /* control period */
-#define DAB_Ts 4.7619e-5  // 21kHz
-#define Fleg_Ts 14.2857e-5  // 7kHz
+#define DAB_Ts 5e-5  // 20kHz
+#define Fleg_Ts 2e-4  // 5kHz
 //#define DAB_Ts 0.3333e-4  // 21kHz
 //#define Fleg_Ts 1e-4  // 10kHz
 
 /* PI parameters */
   // Ulcmd
-//#define Kp_Ulcmd 0.5
-//#define Ki_Ulcmd 0
-#define Uplim_Ulcmd 1
-#define Downlim_Ulcmd -1
+//#define Kp_Ig 0.1
+#define Ag 1.2542e-3
+#define Bg 1.99355
+#define Cg -0.99749
+#define Uplim_Ig 1
+#define Downlim_Ig -1
 
 /* auxiliary */
 #define pi 3.1415926
@@ -63,18 +65,38 @@ extern double Ug;
   // 电流
 extern double Ii;
 extern double Ig;
+extern double Ia;
+extern double Ib;
+extern double Ic;
 
 /* 给定值 */
   // 电压
-extern double Ulcmd;
+extern double Ug_cmd;
+extern double Ua_cmd;
+extern double Ub_cmd;
+extern double Uc_cmd;
   // 电流
 extern double IgRefRatio;
-extern double Igcmd;
+extern double IabcRefRatio;
+extern double Ig_cmd;
+extern double Ia_cmd;
+extern double Ib_cmd;
+extern double Ic_cmd;
 
 /* PI 变量 */
-extern double Kp_Ulcmd;
-extern double Ki_Ulcmd;
-extern double Ig_intgrt;
+extern double Kp_Ig, Kr_Ig;
+
+extern double Ig_en, Ig_en1, Ig_en2;
+extern double Ig_Rn, Ig_Rn1, Ig_Rn2;
+
+extern double Ia_en, Ia_en1, Ia_en2;
+extern double Ia_Rn, Ia_Rn1, Ia_Rn2;
+
+extern double Ib_en, Ib_en1, Ib_en2;
+extern double Ib_Rn, Ib_Rn1, Ib_Rn2;
+
+extern double Ic_en, Ic_en1, Ic_en2;
+extern double Ic_Rn, Ic_Rn1, Ic_Rn2;
 
 /******************************************************************************
 | local functions prototypes
@@ -85,5 +107,8 @@ extern double Ig_intgrt;
 |----------------------------------------------------------------------------*/
 /* PI module */  
 extern double PImodule(double Kp, double Ki, double err, double *intgrt, double Uplim, double Downlim, double Ts);
+extern double PRmodule(double A, double B, double C, double Kr, double Kp, double en, double *en1, double *en2, \
+		               double *Rn1, double *Rn2, double Uplim, double Downlim, double Ts);
 extern double Integrator(double paramin, double sum, double ts);
 extern double LPfilter(double x, double lasty, double wc, double ts);
+extern double Dfilter(double *x);
