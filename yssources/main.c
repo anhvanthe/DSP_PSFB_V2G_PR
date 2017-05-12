@@ -6,7 +6,7 @@
 /******************************************************************************
 | local variable definitions
 |----------------------------------------------------------------------------*/
-double mSample[4];
+double mSample[5];
 double Dutycycle = 0;
 Uint16 D_Leg1 = 0;  // Epwm4
 Uint16 D_Leg2 = 0;  // Epwm5
@@ -84,7 +84,7 @@ interrupt void epwm1_timer_isr(void)
 //	Ug = LPfilter(-tempU1 * HallRatioVg, Ug, wc, DAB_Ts);  // 采样方向和正方向相反
 //	Ib = LPfilter(tempb1 * HallRatioIb, Ib, wc, DAB_Ts);
 //	Ig = LPfilter(tempg1 * HallRatioIg, Ig, wc, DAB_Ts);
-	ParallelRD(mSample, 4);
+	ParallelRD(mSample, 5);
 	Ia = LPfilter(mSample[0] * HallRatioIa, Ia, wc, DAB_Ts);
 	Ug = LPfilter(mSample[1] * HallRatioVg, Ug, wc, DAB_Ts);  // 采样方向和正方向相同
 	Ib = LPfilter(mSample[2] * HallRatioIb, Ib, wc, DAB_Ts);

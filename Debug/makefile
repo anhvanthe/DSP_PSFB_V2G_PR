@@ -132,32 +132,32 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-DAB_CHARGE_5kHz.out \
+DAB_V2G.out \
 
 EXE_OUTPUTS__QUOTED += \
-"DAB_CHARGE_5kHz.out" \
+"DAB_V2G.out" \
 
 BIN_OUTPUTS += \
-DAB_CHARGE_5kHz.hex \
+DAB_V2G.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"DAB_CHARGE_5kHz.hex" \
+"DAB_V2G.hex" \
 
 
 # All Target
-all: DAB_CHARGE_5kHz.out
+all: DAB_V2G.out
 
 # Tool invocations
-DAB_CHARGE_5kHz.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+DAB_V2G.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"DAB_CHARGE_5kHz.map" --stack_size=0x300 --warn_sections -i"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/lib" -i"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="DAB_CHARGE_5kHz_linkInfo.xml" --rom_model -o "DAB_CHARGE_5kHz.out" $(ORDERED_OBJS)
+	"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"DAB_V2G.map" --stack_size=0x300 --warn_sections -i"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/lib" -i"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="DAB_V2G_linkInfo.xml" --rom_model -o "DAB_V2G.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-DAB_CHARGE_5kHz.hex: $(EXE_OUTPUTS)
+DAB_V2G.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/bin/hex2000"  -o "DAB_CHARGE_5kHz.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/bin/hex2000"  -o "DAB_V2G.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
