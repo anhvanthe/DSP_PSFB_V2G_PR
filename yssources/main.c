@@ -60,30 +60,10 @@ void main()
 
 interrupt void epwm1_timer_isr(void)
 {
-	double tempa[5], tempU[5], tempb[5], tempg[5];
-	double tempa1, tempU1, tempb1, tempg1;
-	int i = 0;
-
 	// Clear INT flag for this timer
 	EPwm1Regs.ETCLR.bit.INT = 1;
 
 	/* ======== 电压电流采样 ======== */
-//	for(i = 0; i <= 4; i++)
-//	{
-//		ParallelRD(mSample, 4);
-//		tempa[i] = mSample[0];
-//		tempU[i] = mSample[1];
-//		tempb[i] = mSample[1];
-//		tempg[i] = mSample[3];
-//	}
-//	tempa1 = Dfilter(tempa);
-//	tempU1 = Dfilter(tempU);
-//	tempb1 = Dfilter(tempb);
-//	tempg1 = Dfilter(tempg);
-//	Ia = LPfilter(tempa1 * HallRatioIa, Ic, wc, DAB_Ts);
-//	Ug = LPfilter(-tempU1 * HallRatioVg, Ug, wc, DAB_Ts);  // 采样方向和正方向相反
-//	Ib = LPfilter(tempb1 * HallRatioIb, Ib, wc, DAB_Ts);
-//	Ig = LPfilter(tempg1 * HallRatioIg, Ig, wc, DAB_Ts);
 	ParallelRD(mSample, 5);
 	Ia = LPfilter(mSample[0] * HallRatioIa, Ia, wc, DAB_Ts);
 	Ug = LPfilter(mSample[1] * HallRatioVg, Ug, wc, DAB_Ts);  // 采样方向和正方向相同

@@ -37,7 +37,7 @@ extern double Ib_cmd = 0;
 extern double Ic_cmd = 0;
 
 /* PI ±‰¡ø */
-extern double Kp_Ig = 0.03, Kr_Ig = 2;
+extern double Kp_Ig = 0.2, Kr_Ig = 2;
 
 extern double Ig_en = 0, Ig_en1 = 0, Ig_en2 = 0;
 extern double Ig_Rn = 0, Ig_Rn1 = 0, Ig_Rn2 = 0;
