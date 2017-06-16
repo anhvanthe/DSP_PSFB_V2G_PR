@@ -29,7 +29,7 @@ extern double Ub_cmd = 0;
 extern double Uc_cmd = 0;
 
   // µçÁ÷
-extern double IgRefRatio = 0.045;
+extern double IgRefRatio = 0.09;
 extern double IabcRefRatio = 0.015;
 extern double Ig_cmd = 0;
 extern double Ia_cmd = 0;
