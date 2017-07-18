@@ -66,7 +66,7 @@ interrupt void epwm1_timer_isr(void)
 	/* ======== 电压电流采样 ======== */
 	ParallelRD(mSample, 5);
 	Ia = LPfilter(mSample[0] * HallRatioIa, Ia, wc, DAB_Ts);
-	Ug = LPfilter(mSample[1] * HallRatioVg, Ug, wc, DAB_Ts);  // 采样方向和正方向相同
+	Ug = LPfilter(mSample[1] * HallRatioVg, Ug, 5000, DAB_Ts);  // 采样方向和正方向相同
 	Ib = LPfilter(mSample[2] * HallRatioIb, Ib, wc, DAB_Ts);
 	Ig = LPfilter(mSample[3] * HallRatioIg, Ig, wc, DAB_Ts);
 	Ic = Ig - Ib - Ia;  // ??合不合适
@@ -85,11 +85,11 @@ interrupt void epwm1_timer_isr(void)
 					          &Ia_Rn1, &Ia_Rn2, Uplim_Ig, Downlim_Ig, Fleg_Ts);
 			Dutycycle = 0.5 * Ua_cmd + 0.5;
 
-			EPwm4Regs.TBPHS.half.TBPHS = Flegperiod - 0.7 * PhaSft;  // 时基周期寄存器
-			EPwm5Regs.TBPHS.half.TBPHS = DABperiod * 3 - 0.7 * PhaSft;  // 时基周期寄存器
-			EPwm6Regs.TBPHS.half.TBPHS = DABperiod * 2 - 0.7 * PhaSft;  // 时基周期寄存器
+			EPwm4Regs.TBPHS.half.TBPHS = Flegperiod - 400;  // 300 = 0.5*PhaSft
+			EPwm5Regs.TBPHS.half.TBPHS = DABperiod * 3 - 400;
+			EPwm6Regs.TBPHS.half.TBPHS = DABperiod * 2 - 400;
 
-			EPwm3Regs.TBPHS.half.TBPHS = DABperiod - 0.5 * PhaSft;  // 时基周期寄存器
+			EPwm3Regs.TBPHS.half.TBPHS = DABperiod - 400;
 
 		    D_Leg1 = Flegperiod * Dutycycle;  // 第四桥臂占空比
 		    EPwm4Regs.CMPA.half.CMPA = D_Leg1;  // 寄存器设置
@@ -107,11 +107,11 @@ interrupt void epwm1_timer_isr(void)
 					          &Ib_Rn1, &Ib_Rn2, Uplim_Ig, Downlim_Ig, Fleg_Ts);
 			Dutycycle = 0.5 * Ub_cmd + 0.5;
 
-			EPwm4Regs.TBPHS.half.TBPHS = DABperiod - 0.7 * PhaSft;  // 时基周期寄存器
-			EPwm5Regs.TBPHS.half.TBPHS = Flegperiod - 0.7 * PhaSft;  // 时基周期寄存器
-			EPwm6Regs.TBPHS.half.TBPHS = DABperiod * 3 - 0.7 * PhaSft;  // 时基周期寄存器
+			EPwm4Regs.TBPHS.half.TBPHS = DABperiod - 400;
+			EPwm5Regs.TBPHS.half.TBPHS = Flegperiod - 400;
+			EPwm6Regs.TBPHS.half.TBPHS = DABperiod * 3 - 400;
 
-			EPwm3Regs.TBPHS.half.TBPHS = DABperiod * 2 - 0.7 * PhaSft;  // 时基周期寄存器
+			EPwm3Regs.TBPHS.half.TBPHS = DABperiod * 2 - 400;
 
 		    D_Leg2 = Flegperiod * Dutycycle;  // B相占空比
 		    EPwm5Regs.CMPA.half.CMPA = D_Leg2;  // 寄存器设置
@@ -129,11 +129,11 @@ interrupt void epwm1_timer_isr(void)
 					          &Ic_Rn1, &Ic_Rn2, Uplim_Ig, Downlim_Ig, Fleg_Ts);
 			Dutycycle = 0.5 * Uc_cmd + 0.5;
 
-			EPwm4Regs.TBPHS.half.TBPHS = DABperiod * 2 - 0.7 * PhaSft;  // 时基周期寄存器
-			EPwm5Regs.TBPHS.half.TBPHS = DABperiod - 0.7 * PhaSft;  // 时基周期寄存器
-			EPwm6Regs.TBPHS.half.TBPHS = Flegperiod - 0.7 * PhaSft;  // 时基周期寄存器
+			EPwm4Regs.TBPHS.half.TBPHS = DABperiod * 2 - 400;
+			EPwm5Regs.TBPHS.half.TBPHS = DABperiod - 400;
+			EPwm6Regs.TBPHS.half.TBPHS = Flegperiod - 400;
 
-			EPwm3Regs.TBPHS.half.TBPHS = DABperiod * 3 - 0.7 * PhaSft;  // 时基周期寄存器
+			EPwm3Regs.TBPHS.half.TBPHS = DABperiod * 3 - 400;
 
 		    D_Leg3 = Flegperiod * Dutycycle;  // B相占空比
 		    EPwm6Regs.CMPA.half.CMPA = D_Leg3;  // 寄存器设置
@@ -151,11 +151,11 @@ interrupt void epwm1_timer_isr(void)
 					          &Ig_Rn1, &Ig_Rn2, Uplim_Ig, Downlim_Ig, Fleg_Ts);
 			Dutycycle = 0.5 * Ug_cmd + 0.5;
 
-			EPwm4Regs.TBPHS.half.TBPHS = DABperiod * 3 - 0.7 * PhaSft;  // 时基周期寄存器
-			EPwm5Regs.TBPHS.half.TBPHS = DABperiod * 2 - 0.7 * PhaSft;  // 时基周期寄存器
-			EPwm6Regs.TBPHS.half.TBPHS = DABperiod - 0.7 * PhaSft;  // 时基周期寄存器
+			EPwm4Regs.TBPHS.half.TBPHS = DABperiod * 3 - 400;
+			EPwm5Regs.TBPHS.half.TBPHS = DABperiod * 2 - 400;
+			EPwm6Regs.TBPHS.half.TBPHS = DABperiod - 400;
 
-			EPwm3Regs.TBPHS.half.TBPHS = Flegperiod - 0.7 * PhaSft;  // 时基周期寄存器
+			EPwm3Regs.TBPHS.half.TBPHS = Flegperiod - 400;
 
 		    D_LegN = Flegperiod * Dutycycle;  // B相占空比
 		    EPwm3Regs.CMPA.half.CMPA = D_LegN;  // 寄存器设置
@@ -179,8 +179,8 @@ interrupt void epwm1_timer_isr(void)
 		case 0:
 		{
 			DACout(0, Ig);
-			DACout(1, Ig_cmd);
-			DACout(2, Ug_cmd);
+			DACout(2, Ug * 0.1);
+			//DACout(2, Ug_cmd);
 			break;
 		}
 		case 1:

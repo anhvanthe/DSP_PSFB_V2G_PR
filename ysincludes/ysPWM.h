@@ -12,7 +12,7 @@
 //#define DABperiod				5000  // 3.33KHz对应时钟数，TBCLK = SYSCLKOUT
 //#define Flegperiod				15000  // 10KHz对应时钟数，TBCLK = SYSCLKOUT
 #define prediv				0  // 预分频
-#define DeadZone			220   // 死区1.5us
+#define DeadZone			100   // 死区1.5us
 
 /******************************************************************************
 | variables

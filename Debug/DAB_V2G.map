@@ -1,10 +1,10 @@
 ******************************************************************************
              TMS320C2000 Linker PC v6.2.5                      
 ******************************************************************************
->> Linked Thu Jun 15 10:32:46 2017
+>> Linked Tue Jul 18 15:30:02 2017
 
 OUTPUT FILE NAME:   <DAB_V2G.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 00008f49
+ENTRY POINT SYMBOL: "_c_int00"  address: 00008e04
 
 
 MEMORY CONFIGURATION
@@ -15,7 +15,7 @@ PAGE 0:
   BEGIN                 00000000   00000002  00000002  00000000  RWIX
   BOOT_RSVD             00000002   0000004e  00000000  0000004e  RWIX
   RAMM0                 00000050   000003b0  00000000  000003b0  RWIX
-  RAML                  00008000   00004000  0000115f  00002ea1  RWIX
+  RAML                  00008000   00004000  0000101a  00002fe6  RWIX
   ZONE7A                00200000   0000fc00  00000000  0000fc00  RWIX
   CSM_RSVD              0033ff80   00000076  00000000  00000076  RWIX
   CSM_PWL               0033fff8   00000008  00000000  00000008  RWIX
@@ -92,37 +92,37 @@ codestart
 
 .pinit     0    00008000    00000000     UNINITIALIZED
 
-.text      0    00008000    00001049     
-                  00008000    000004f1     main.obj (.text:retain)
-                  000084f1    00000323     DSP2833x_DefaultIsr.obj (.text:retain)
-                  00008814    0000019a     DABcontrol.obj (.text)
-                  000089ae    00000167     ysPWM.obj (.text)
-                  00008b15    000000f7     DSP2833x_SysCtrl.obj (.text)
-                  00008c0c    000000f0     ysPORT.obj (.text)
-                  00008cfc    000000ed     ysADC.obj (.text)
-                  00008de9    00000088     rts2800_fpu32.lib : fs_div.obj (.text)
-                  00008e71    0000006f     ysECAP.obj (.text)
-                  00008ee0    00000069     ysDAC.obj (.text)
-                  00008f49    00000046     rts2800_fpu32.lib : boot.obj (.text)
-                  00008f8f    0000002f     main.obj (.text)
-                  00008fbe    00000028     DSP2833x_PieCtrl.obj (.text)
-                  00008fe6    00000020     DSP2833x_PieVect.obj (.text)
-                  00009006    00000019     rts2800_fpu32.lib : args_main.obj (.text)
-                  0000901f    00000019                       : exit.obj (.text)
-                  00009038    00000009                       : _lock.obj (.text)
-                  00009041    00000008     DSP2833x_CodeStartBranch.obj (.text)
+.text      0    00008000    00000f04     
+                  00008000    000003a4     main.obj (.text:retain)
+                  000083a4    00000323     DSP2833x_DefaultIsr.obj (.text:retain)
+                  000086c7    0000019a     DABcontrol.obj (.text)
+                  00008861    00000167     ysPWM.obj (.text)
+                  000089c8    000000f7     DSP2833x_SysCtrl.obj (.text)
+                  00008abf    000000f0     ysPORT.obj (.text)
+                  00008baf    000000ed     ysADC.obj (.text)
+                  00008c9c    00000088     rts2800_fpu32.lib : fs_div.obj (.text)
+                  00008d24    00000077     ysECAP.obj (.text)
+                  00008d9b    00000069     ysDAC.obj (.text)
+                  00008e04    00000046     rts2800_fpu32.lib : boot.obj (.text)
+                  00008e4a    0000002f     main.obj (.text)
+                  00008e79    00000028     DSP2833x_PieCtrl.obj (.text)
+                  00008ea1    00000020     DSP2833x_PieVect.obj (.text)
+                  00008ec1    00000019     rts2800_fpu32.lib : args_main.obj (.text)
+                  00008eda    00000019                       : exit.obj (.text)
+                  00008ef3    00000009                       : _lock.obj (.text)
+                  00008efc    00000008     DSP2833x_CodeStartBranch.obj (.text)
 
-.cinit     0    00009049    00000112     
-                  00009049    000000d7     DABcontrol.obj (.cinit)
-                  00009120    0000001d     main.obj (.cinit)
-                  0000913d    0000000a     rts2800_fpu32.lib : _lock.obj (.cinit)
-                  00009147    0000000a                       : exit.obj (.cinit)
-                  00009151    00000004     ysADC.obj (.cinit)
-                  00009155    00000004     ysPWM.obj (.cinit)
-                  00009159    00000002     --HOLE-- [fill = 0]
+.cinit     0    00008f04    00000112     
+                  00008f04    000000d7     DABcontrol.obj (.cinit)
+                  00008fdb    0000001d     main.obj (.cinit)
+                  00008ff8    0000000a     rts2800_fpu32.lib : _lock.obj (.cinit)
+                  00009002    0000000a                       : exit.obj (.cinit)
+                  0000900c    00000004     ysADC.obj (.cinit)
+                  00009010    00000004     ysPWM.obj (.cinit)
+                  00009014    00000002     --HOLE-- [fill = 0]
 
-ramfuncs   0    0000915b    00000004     
-                  0000915b    00000004     DSP2833x_usDelay.obj (ramfuncs)
+ramfuncs   0    00009016    00000004     
+                  00009016    00000004     DSP2833x_usDelay.obj (ramfuncs)
 
 csm_rsvd   0    0033ff80    00000000     DSECT
 
@@ -490,10 +490,10 @@ address     data page           name
 0000c166     305 (0000c140)     _CpuTimer0
 0000c16e     305 (0000c140)     _D_LegN
 0000c16f     305 (0000c140)     _D_Leg3
-0000c170     305 (0000c140)     _D_Leg2
-0000c171     305 (0000c140)     _LegCount
-0000c172     305 (0000c140)     _indexDA
-0000c173     305 (0000c140)     _D_Leg1
+0000c170     305 (0000c140)     _D_Leg1
+0000c171     305 (0000c140)     _D_Leg2
+0000c172     305 (0000c140)     _LegCount
+0000c173     305 (0000c140)     _indexDA
 0000c174     305 (0000c140)     _Dutycycle
 0000c176     305 (0000c140)     _mSample
 
@@ -512,9 +512,9 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 address    name
 --------   ----
 00008000   .text
-0000901f   C$$EXIT
-00008de9   FS$$DIV
-000085d7   _ADCINT_ISR
+00008eda   C$$EXIT
+00008c9c   FS$$DIV
+0000848a   _ADCINT_ISR
 00380080   _ADC_cal
 00000b00   _AdcMirror
 00007100   _AdcRegs
@@ -526,35 +526,35 @@ address    name
 00000c10   _CpuTimer2Regs
 0033fff8   _CsmPwl
 00000ae0   _CsmRegs
-00008bdb   _CsmUnlock
-00008ee0   _DACout
-00008505   _DATALOG_ISR
-000086f9   _DINTCH1_ISR
-00008703   _DINTCH2_ISR
-0000870d   _DINTCH3_ISR
-00008717   _DINTCH4_ISR
-00008721   _DINTCH5_ISR
-0000872b   _DINTCH6_ISR
-0000915b   _DSP28x_usDelay
-0000c173   _D_Leg1
-0000c170   _D_Leg2
+00008a8e   _CsmUnlock
+00008d9b   _DACout
+000083b8   _DATALOG_ISR
+000085ac   _DINTCH1_ISR
+000085b6   _DINTCH2_ISR
+000085c0   _DINTCH3_ISR
+000085ca   _DINTCH4_ISR
+000085d4   _DINTCH5_ISR
+000085de   _DINTCH6_ISR
+00009016   _DSP28x_usDelay
+0000c170   _D_Leg1
+0000c171   _D_Leg2
 0000c16f   _D_Leg3
 0000c16e   _D_LegN
 00000880   _DevEmuRegs
-00008951   _Dfilter
-00008b28   _DisableDog
+00008804   _Dfilter
+000089db   _DisableDog
 00001000   _DmaRegs
 0000c174   _Dutycycle
-00008785   _ECAN0INTA_ISR
-00008799   _ECAN0INTB_ISR
-0000878f   _ECAN1INTA_ISR
-000087a3   _ECAN1INTB_ISR
-0000866d   _ECAP1_INT_ISR
-00008677   _ECAP2_INT_ISR
-00008681   _ECAP3_INT_ISR
-0000868b   _ECAP4_INT_ISR
-00008695   _ECAP5_INT_ISR
-0000869f   _ECAP6_INT_ISR
+00008638   _ECAN0INTA_ISR
+0000864c   _ECAN0INTB_ISR
+00008642   _ECAN1INTA_ISR
+00008656   _ECAN1INTB_ISR
+00008520   _ECAP1_INT_ISR
+0000852a   _ECAP2_INT_ISR
+00008534   _ECAP3_INT_ISR
+0000853e   _ECAP4_INT_ISR
+00008548   _ECAP5_INT_ISR
+00008552   _ECAP6_INT_ISR
 00006040   _ECanaLAMRegs
 000060c0   _ECanaMOTORegs
 00006080   _ECanaMOTSRegs
@@ -571,41 +571,41 @@ address    name
 00006a60   _ECap4Regs
 00006a80   _ECap5Regs
 00006aa0   _ECap6Regs
-000087f3   _EMPTY_ISR
-00008519   _EMUINT_ISR
-00008631   _EPWM1_INT_ISR
-000085f5   _EPWM1_TZINT_ISR
-0000863b   _EPWM2_INT_ISR
-000085ff   _EPWM2_TZINT_ISR
-00008645   _EPWM3_INT_ISR
-00008609   _EPWM3_TZINT_ISR
-0000864f   _EPWM4_INT_ISR
-00008613   _EPWM4_TZINT_ISR
-00008659   _EPWM5_INT_ISR
-0000861d   _EPWM5_TZINT_ISR
-00008663   _EPWM6_INT_ISR
-00008627   _EPWM6_TZINT_ISR
+000086a6   _EMPTY_ISR
+000083cc   _EMUINT_ISR
+000084e4   _EPWM1_INT_ISR
+000084a8   _EPWM1_TZINT_ISR
+000084ee   _EPWM2_INT_ISR
+000084b2   _EPWM2_TZINT_ISR
+000084f8   _EPWM3_INT_ISR
+000084bc   _EPWM3_TZINT_ISR
+00008502   _EPWM4_INT_ISR
+000084c6   _EPWM4_TZINT_ISR
+0000850c   _EPWM5_INT_ISR
+000084d0   _EPWM5_TZINT_ISR
+00008516   _EPWM6_INT_ISR
+000084da   _EPWM6_TZINT_ISR
 00006800   _EPwm1Regs
 00006840   _EPwm2Regs
 00006880   _EPwm3Regs
 000068c0   _EPwm4Regs
 00006900   _EPwm5Regs
 00006940   _EPwm6Regs
-000086a9   _EQEP1_INT_ISR
-000086b3   _EQEP2_INT_ISR
+0000855c   _EQEP1_INT_ISR
+00008566   _EQEP2_INT_ISR
 00006b00   _EQep1Regs
 00006b40   _EQep2Regs
-00008fdd   _EnableInterrupts
+00008e98   _EnableInterrupts
 00000a80   _FlashRegs
 00006f80   _GpioCtrlRegs
 00006fc0   _GpioDataRegs
 00006fe0   _GpioIntRegs
-00008735   _I2CINT1A_ISR
-0000873f   _I2CINT2A_ISR
+000085e8   _I2CINT1A_ISR
+000085f2   _I2CINT2A_ISR
 00007900   _I2caRegs
-0000852d   _ILLEGAL_ISR
-000084f1   _INT13_ISR
-000084fb   _INT14_ISR
+000083e0   _ILLEGAL_ISR
+000083a4   _INT13_ISR
+000083ae   _INT14_ISR
 0000c138   _Ia
 0000c108   _Ia_Rn
 0000c106   _Ia_Rn1
@@ -641,82 +641,82 @@ address    name
 0000c10c   _Ig_en1
 0000c110   _Ig_en2
 0000c130   _Ii
-00008cfc   _InitADC
-00008e71   _InitECAP
-00008c0c   _InitPORT
-000089ae   _InitPWM
-00008b80   _InitPeripheralClocks
-00008fbe   _InitPieCtrl
-00008fe6   _InitPieVectTable
-00008b30   _InitPll
-00008b15   _InitSysCtrl
-0000891f   _Integrator
+00008baf   _InitADC
+00008d24   _InitECAP
+00008abf   _InitPORT
+00008861   _InitPWM
+00008a33   _InitPeripheralClocks
+00008e79   _InitPieCtrl
+00008ea1   _InitPieVectTable
+000089e3   _InitPll
+000089c8   _InitSysCtrl
+000087d2   _Integrator
 0000c144   _Kp_Ig
 0000c148   _Kr_Ig
-00008930   _LPfilter
-000087e9   _LUF_ISR
-000087df   _LVF_ISR
-0000c171   _LegCount
-000086e5   _MRINTA_ISR
-000086d1   _MRINTB_ISR
-000086ef   _MXINTA_ISR
-000086db   _MXINTB_ISR
+000087e3   _LPfilter
+0000869c   _LUF_ISR
+00008692   _LVF_ISR
+0000c172   _LegCount
+00008598   _MRINTA_ISR
+00008584   _MRINTB_ISR
+000085a2   _MXINTA_ISR
+0000858e   _MXINTB_ISR
 00005000   _McbspaRegs
 00005040   _McbspbRegs
-00008523   _NMI_ISR
-00008800   _PIE_RESERVED
-00008814   _PImodule
-0000887a   _PRmodule
-00008d70   _ParallelRD
+000083d6   _NMI_ISR
+000086b3   _PIE_RESERVED
+000086c7   _PImodule
+0000872d   _PRmodule
+00008c23   _ParallelRD
 0000c189   _PhaSft
 00000ce0   _PieCtrlRegs
 00000d00   _PieVectTable
 0000c000   _PieVectTableInit
-0000850f   _RTOSINT_ISR
-0000875d   _SCIRXINTA_ISR
-00008771   _SCIRXINTB_ISR
-00008749   _SCIRXINTC_ISR
-00008767   _SCITXINTA_ISR
-0000877b   _SCITXINTB_ISR
-00008753   _SCITXINTC_ISR
-000085af   _SEQ1INT_ISR
-000085b9   _SEQ2INT_ISR
-000086bd   _SPIRXINTA_ISR
-000086c7   _SPITXINTA_ISR
+000083c2   _RTOSINT_ISR
+00008610   _SCIRXINTA_ISR
+00008624   _SCIRXINTB_ISR
+000085fc   _SCIRXINTC_ISR
+0000861a   _SCITXINTA_ISR
+0000862e   _SCITXINTB_ISR
+00008606   _SCITXINTC_ISR
+00008462   _SEQ1INT_ISR
+0000846c   _SEQ2INT_ISR
+00008570   _SPIRXINTA_ISR
+0000857a   _SPITXINTA_ISR
 00007050   _SciaRegs
 00007750   _ScibRegs
 00007770   _ScicRegs
-00008d0f   _SerialRD
-00008b1e   _ServiceDog
+00008bc2   _SerialRD
+000089d1   _ServiceDog
 00007040   _SpiaRegs
 00007010   _SysCtrlRegs
-000085e1   _TINT0_ISR
-00008591   _USER10_ISR
-0000859b   _USER11_ISR
-000085a5   _USER12_ISR
-00008537   _USER1_ISR
-00008541   _USER2_ISR
-0000854b   _USER3_ISR
-00008555   _USER4_ISR
-0000855f   _USER5_ISR
-00008569   _USER6_ISR
-00008573   _USER7_ISR
-0000857d   _USER8_ISR
-00008587   _USER9_ISR
+00008494   _TINT0_ISR
+00008444   _USER10_ISR
+0000844e   _USER11_ISR
+00008458   _USER12_ISR
+000083ea   _USER1_ISR
+000083f4   _USER2_ISR
+000083fe   _USER3_ISR
+00008408   _USER4_ISR
+00008412   _USER5_ISR
+0000841c   _USER6_ISR
+00008426   _USER7_ISR
+00008430   _USER8_ISR
+0000843a   _USER9_ISR
 0000c14a   _Ua_cmd
 0000c14e   _Ub_cmd
 0000c152   _Uc_cmd
 0000c132   _Ug
 0000c14c   _Ug_cmd
 0000c13c   _Ui
-000085eb   _WAKEINT_ISR
-000085c3   _XINT1_ISR
-000085cd   _XINT2_ISR
-000087ad   _XINT3_ISR
-000087b7   _XINT4_ISR
-000087c1   _XINT5_ISR
-000087cb   _XINT6_ISR
-000087d5   _XINT7_ISR
+0000849e   _WAKEINT_ISR
+00008476   _XINT1_ISR
+00008480   _XINT2_ISR
+00008660   _XINT3_ISR
+0000866a   _XINT4_ISR
+00008674   _XINT5_ISR
+0000867e   _XINT6_ISR
+00008688   _XINT7_ISR
 00007070   _XIntruptRegs
 00000b20   _XintfRegs
 00000700   __STACK_END
@@ -726,30 +726,30 @@ address    name
 0000c186   ___TI_dtors_ptr
 ffffffff   ___binit__
 ffffffff   ___c_args__
-00009049   ___cinit__
-00009049   ___etext__
+00008f04   ___cinit__
+00008f04   ___etext__
 ffffffff   ___pinit__
 00008000   ___text__
-00009006   __args_main
+00008ec1   __args_main
 0000c182   __lock
-00009040   __nop
-0000903c   __register_lock
-00009038   __register_unlock
+00008efb   __nop
+00008ef7   __register_lock
+00008ef3   __register_unlock
 00000400   __stack
 0000c180   __unlock
-0000901f   _abort
-00008f49   _c_int00
+00008eda   _abort
+00008e04   _c_int00
 0000c188   _conv_flg
 00008000   _epwm1_timer_isr
-00009021   _exit
-0000c172   _indexDA
+00008edc   _exit
+0000c173   _indexDA
 0000c176   _mSample
-00008f8f   _main
-0000880a   _rsvd_ISR
+00008e4a   _main
+000086bd   _rsvd_ISR
 ffffffff   binit
-00009049   cinit
+00008f04   cinit
 00000000   code_start
-00009049   etext
+00008f04   etext
 ffffffff   pinit
 
 
@@ -813,122 +813,122 @@ address    name
 00008000   .text
 00008000   ___text__
 00008000   _epwm1_timer_isr
-000084f1   _INT13_ISR
-000084fb   _INT14_ISR
-00008505   _DATALOG_ISR
-0000850f   _RTOSINT_ISR
-00008519   _EMUINT_ISR
-00008523   _NMI_ISR
-0000852d   _ILLEGAL_ISR
-00008537   _USER1_ISR
-00008541   _USER2_ISR
-0000854b   _USER3_ISR
-00008555   _USER4_ISR
-0000855f   _USER5_ISR
-00008569   _USER6_ISR
-00008573   _USER7_ISR
-0000857d   _USER8_ISR
-00008587   _USER9_ISR
-00008591   _USER10_ISR
-0000859b   _USER11_ISR
-000085a5   _USER12_ISR
-000085af   _SEQ1INT_ISR
-000085b9   _SEQ2INT_ISR
-000085c3   _XINT1_ISR
-000085cd   _XINT2_ISR
-000085d7   _ADCINT_ISR
-000085e1   _TINT0_ISR
-000085eb   _WAKEINT_ISR
-000085f5   _EPWM1_TZINT_ISR
-000085ff   _EPWM2_TZINT_ISR
-00008609   _EPWM3_TZINT_ISR
-00008613   _EPWM4_TZINT_ISR
-0000861d   _EPWM5_TZINT_ISR
-00008627   _EPWM6_TZINT_ISR
-00008631   _EPWM1_INT_ISR
-0000863b   _EPWM2_INT_ISR
-00008645   _EPWM3_INT_ISR
-0000864f   _EPWM4_INT_ISR
-00008659   _EPWM5_INT_ISR
-00008663   _EPWM6_INT_ISR
-0000866d   _ECAP1_INT_ISR
-00008677   _ECAP2_INT_ISR
-00008681   _ECAP3_INT_ISR
-0000868b   _ECAP4_INT_ISR
-00008695   _ECAP5_INT_ISR
-0000869f   _ECAP6_INT_ISR
-000086a9   _EQEP1_INT_ISR
-000086b3   _EQEP2_INT_ISR
-000086bd   _SPIRXINTA_ISR
-000086c7   _SPITXINTA_ISR
-000086d1   _MRINTB_ISR
-000086db   _MXINTB_ISR
-000086e5   _MRINTA_ISR
-000086ef   _MXINTA_ISR
-000086f9   _DINTCH1_ISR
-00008703   _DINTCH2_ISR
-0000870d   _DINTCH3_ISR
-00008717   _DINTCH4_ISR
-00008721   _DINTCH5_ISR
-0000872b   _DINTCH6_ISR
-00008735   _I2CINT1A_ISR
-0000873f   _I2CINT2A_ISR
-00008749   _SCIRXINTC_ISR
-00008753   _SCITXINTC_ISR
-0000875d   _SCIRXINTA_ISR
-00008767   _SCITXINTA_ISR
-00008771   _SCIRXINTB_ISR
-0000877b   _SCITXINTB_ISR
-00008785   _ECAN0INTA_ISR
-0000878f   _ECAN1INTA_ISR
-00008799   _ECAN0INTB_ISR
-000087a3   _ECAN1INTB_ISR
-000087ad   _XINT3_ISR
-000087b7   _XINT4_ISR
-000087c1   _XINT5_ISR
-000087cb   _XINT6_ISR
-000087d5   _XINT7_ISR
-000087df   _LVF_ISR
-000087e9   _LUF_ISR
-000087f3   _EMPTY_ISR
-00008800   _PIE_RESERVED
-0000880a   _rsvd_ISR
-00008814   _PImodule
-0000887a   _PRmodule
-0000891f   _Integrator
-00008930   _LPfilter
-00008951   _Dfilter
-000089ae   _InitPWM
-00008b15   _InitSysCtrl
-00008b1e   _ServiceDog
-00008b28   _DisableDog
-00008b30   _InitPll
-00008b80   _InitPeripheralClocks
-00008bdb   _CsmUnlock
-00008c0c   _InitPORT
-00008cfc   _InitADC
-00008d0f   _SerialRD
-00008d70   _ParallelRD
-00008de9   FS$$DIV
-00008e71   _InitECAP
-00008ee0   _DACout
-00008f49   _c_int00
-00008f8f   _main
-00008fbe   _InitPieCtrl
-00008fdd   _EnableInterrupts
-00008fe6   _InitPieVectTable
-00009006   __args_main
-0000901f   C$$EXIT
-0000901f   _abort
-00009021   _exit
-00009038   __register_unlock
-0000903c   __register_lock
-00009040   __nop
-00009049   ___cinit__
-00009049   ___etext__
-00009049   cinit
-00009049   etext
-0000915b   _DSP28x_usDelay
+000083a4   _INT13_ISR
+000083ae   _INT14_ISR
+000083b8   _DATALOG_ISR
+000083c2   _RTOSINT_ISR
+000083cc   _EMUINT_ISR
+000083d6   _NMI_ISR
+000083e0   _ILLEGAL_ISR
+000083ea   _USER1_ISR
+000083f4   _USER2_ISR
+000083fe   _USER3_ISR
+00008408   _USER4_ISR
+00008412   _USER5_ISR
+0000841c   _USER6_ISR
+00008426   _USER7_ISR
+00008430   _USER8_ISR
+0000843a   _USER9_ISR
+00008444   _USER10_ISR
+0000844e   _USER11_ISR
+00008458   _USER12_ISR
+00008462   _SEQ1INT_ISR
+0000846c   _SEQ2INT_ISR
+00008476   _XINT1_ISR
+00008480   _XINT2_ISR
+0000848a   _ADCINT_ISR
+00008494   _TINT0_ISR
+0000849e   _WAKEINT_ISR
+000084a8   _EPWM1_TZINT_ISR
+000084b2   _EPWM2_TZINT_ISR
+000084bc   _EPWM3_TZINT_ISR
+000084c6   _EPWM4_TZINT_ISR
+000084d0   _EPWM5_TZINT_ISR
+000084da   _EPWM6_TZINT_ISR
+000084e4   _EPWM1_INT_ISR
+000084ee   _EPWM2_INT_ISR
+000084f8   _EPWM3_INT_ISR
+00008502   _EPWM4_INT_ISR
+0000850c   _EPWM5_INT_ISR
+00008516   _EPWM6_INT_ISR
+00008520   _ECAP1_INT_ISR
+0000852a   _ECAP2_INT_ISR
+00008534   _ECAP3_INT_ISR
+0000853e   _ECAP4_INT_ISR
+00008548   _ECAP5_INT_ISR
+00008552   _ECAP6_INT_ISR
+0000855c   _EQEP1_INT_ISR
+00008566   _EQEP2_INT_ISR
+00008570   _SPIRXINTA_ISR
+0000857a   _SPITXINTA_ISR
+00008584   _MRINTB_ISR
+0000858e   _MXINTB_ISR
+00008598   _MRINTA_ISR
+000085a2   _MXINTA_ISR
+000085ac   _DINTCH1_ISR
+000085b6   _DINTCH2_ISR
+000085c0   _DINTCH3_ISR
+000085ca   _DINTCH4_ISR
+000085d4   _DINTCH5_ISR
+000085de   _DINTCH6_ISR
+000085e8   _I2CINT1A_ISR
+000085f2   _I2CINT2A_ISR
+000085fc   _SCIRXINTC_ISR
+00008606   _SCITXINTC_ISR
+00008610   _SCIRXINTA_ISR
+0000861a   _SCITXINTA_ISR
+00008624   _SCIRXINTB_ISR
+0000862e   _SCITXINTB_ISR
+00008638   _ECAN0INTA_ISR
+00008642   _ECAN1INTA_ISR
+0000864c   _ECAN0INTB_ISR
+00008656   _ECAN1INTB_ISR
+00008660   _XINT3_ISR
+0000866a   _XINT4_ISR
+00008674   _XINT5_ISR
+0000867e   _XINT6_ISR
+00008688   _XINT7_ISR
+00008692   _LVF_ISR
+0000869c   _LUF_ISR
+000086a6   _EMPTY_ISR
+000086b3   _PIE_RESERVED
+000086bd   _rsvd_ISR
+000086c7   _PImodule
+0000872d   _PRmodule
+000087d2   _Integrator
+000087e3   _LPfilter
+00008804   _Dfilter
+00008861   _InitPWM
+000089c8   _InitSysCtrl
+000089d1   _ServiceDog
+000089db   _DisableDog
+000089e3   _InitPll
+00008a33   _InitPeripheralClocks
+00008a8e   _CsmUnlock
+00008abf   _InitPORT
+00008baf   _InitADC
+00008bc2   _SerialRD
+00008c23   _ParallelRD
+00008c9c   FS$$DIV
+00008d24   _InitECAP
+00008d9b   _DACout
+00008e04   _c_int00
+00008e4a   _main
+00008e79   _InitPieCtrl
+00008e98   _EnableInterrupts
+00008ea1   _InitPieVectTable
+00008ec1   __args_main
+00008eda   C$$EXIT
+00008eda   _abort
+00008edc   _exit
+00008ef3   __register_unlock
+00008ef7   __register_lock
+00008efb   __nop
+00008f04   ___cinit__
+00008f04   ___etext__
+00008f04   cinit
+00008f04   etext
+00009016   _DSP28x_usDelay
 0000c000   _PieVectTableInit
 0000c100   _Ia_en1
 0000c102   _Ia_en
@@ -978,10 +978,10 @@ address    name
 0000c166   _CpuTimer0
 0000c16e   _D_LegN
 0000c16f   _D_Leg3
-0000c170   _D_Leg2
-0000c171   _LegCount
-0000c172   _indexDA
-0000c173   _D_Leg1
+0000c170   _D_Leg1
+0000c171   _D_Leg2
+0000c172   _LegCount
+0000c173   _indexDA
 0000c174   _Dutycycle
 0000c176   _mSample
 0000c180   __unlock
