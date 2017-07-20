@@ -14,7 +14,9 @@ Uint16 D_Leg3 = 0;  // Epwm6
 Uint16 D_LegN = 0;  // Epwm3
 
 Uint16 LegCount = 0;  // 判断中断时控制的输出桥臂
+int code_start = 0;
 int indexDA = 0;
+int sci_flag = 0;  // 0——控制启动， 1——DA选择
 
 /******************************************************************************
 @brief  Main
@@ -34,14 +36,23 @@ void main()
 
    EALLOW;
    PieVectTable.EPWM1_INT = &epwm1_timer_isr;  // ePWM1中断入口
+   PieVectTable.TINT0 = &ISRTimer0;
    EDIS;
 
    InitPORT();
    InitPWM();
    InitECAP();
    InitADC();
-	
+   InitSCIB();
+   InitCpuTimers();  // 计算转速和转速给定值
+
+   ConfigCpuTimer(&CpuTimer0, 150, 5000);  // 5ms
+   CpuTimer0Regs.TCR.all = 0x4001; // Use write-only instruction to set TSS bit = 0
+
    IER |= M_INT3;  // enable ePWM CPU_interrupt
+   IER |= M_INT1;  // CpuTimer
+
+   PieCtrlRegs.PIEIER1.bit.INTx7 = 1;
    PieCtrlRegs.PIEIER3.bit.INTx1 = 1;  // enable ePWM1 pie_interrupt
 
    EINT;   // 总中断 INTM 使能
@@ -176,50 +187,11 @@ interrupt void epwm1_timer_isr(void)
 
 	switch(indexDA)
 	{
-		case 0:
-		{
-			DACout(0, Ig);
-			DACout(2, Ug * 0.1);
-			//DACout(2, Ug_cmd);
-			break;
-		}
-		case 1:
-		{
-			DACout(0, Ia);
-			DACout(1, Ia_cmd);
-			DACout(2, Ua_cmd);
-			break;
-		}
-		case 2:
-		{
-			DACout(0, Ib);
-			DACout(1, Ib_cmd);
-			DACout(2, Ub_cmd);
-			break;
-		}
-		case 3:
-		{
-			DACout(0, Ic);
-			DACout(1, Ic_cmd);
-			DACout(2, Uc_cmd);
-			break;
-		}
-		case 4:
-		{
-			DACout(0, Ug_cmd);
-			DACout(1, Ua_cmd);
-			break;
-		}
-		case 5:
-		{
-			DACout(0, Ub_cmd);
-			DACout(1, Uc_cmd);
-		}
-		default:
-		{
-			DACout(0, Ug * 0.1);
-			DACout(1, 0);
-		}
+		case 0:{DACout(0, Ig); DACout(2, Ug * 0.1); break;}
+		case 1:{DACout(0, Ia); DACout(1, Ia_cmd); DACout(2, Ua_cmd); break;}
+		case 2:{DACout(0, Ib); DACout(1, Ib_cmd); DACout(2, Ub_cmd); break;}
+		case 3:{DACout(0, Ic); DACout(1, Ic_cmd); DACout(2, Uc_cmd); break;}
+		default:{DACout(0, Ug * 0.1); DACout(1, 0);}
 	}
 
     // Clear INT flag for this timer
@@ -228,4 +200,33 @@ interrupt void epwm1_timer_isr(void)
 
    // Acknowledge this interrupt to receive more interrupts from group 3
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
+}
+
+interrupt void ISRTimer0(void)
+{
+	int temp = 0;
+	CpuTimer0.InterruptCount ++;
+	if (CpuTimer0.InterruptCount  > 15) CpuTimer0.InterruptCount -= 16;
+
+	if(scib_rx(&temp))
+	{
+		switch(temp)
+		{
+		case 0xff: sci_flag = 0; break;
+		case 0xfe: sci_flag = 1; break;
+		default:
+		{
+			switch(sci_flag)
+			{
+			case 0: code_start = temp; break;
+			case 1: indexDA = temp; break;
+			}
+		}
+		}
+	}
+
+	// Acknowledge this interrupt to receive more interrupts from group 1
+	PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
+	CpuTimer0Regs.TCR.bit.TIF=1;
+	CpuTimer0Regs.TCR.bit.TRB=1;
 }
