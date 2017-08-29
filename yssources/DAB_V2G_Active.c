@@ -1,7 +1,7 @@
 /******************************************************************************
 | includes
 |----------------------------------------------------------------------------*/
-#include "main.h"
+#include "DAB_V2G_PR.h"
 
 /******************************************************************************
 | local variable definitions
@@ -16,7 +16,8 @@ Uint16 D_LegN = 0;  // Epwm3
 Uint16 LegCount = 0;  // 判断中断时控制的输出桥臂
 int code_start = 0;
 int indexDA = 0;
-int sci_flag = 0;  // 0——控制启动， 1——DA选择
+int variables_flag = 0;  // 0——控制启动， 1——DA选择
+int received_data = 0;  // RXFIFO数据数
 
 /******************************************************************************
 @brief  Main
@@ -208,22 +209,37 @@ interrupt void ISRTimer0(void)
 	CpuTimer0.InterruptCount ++;
 	if (CpuTimer0.InterruptCount  > 15) CpuTimer0.InterruptCount -= 16;
 
-	if(scib_rx(&temp))
+	if(ScibRegs.SCIFFRX.bit.RXFFST == 0)
+		received_data = 0;
+	else if(ScibRegs.SCIFFRX.bit.RXFFST == 2)
 	{
+		// 接受控制对象
+		scib_rx(&temp);
 		switch(temp)
 		{
-		case 0xff: sci_flag = 0; break;
-		case 0xfe: sci_flag = 1; break;
-		default:
+		case 0xff: variables_flag = 0; break;
+		case 0xfe: variables_flag = 1; break;
+		}
+		// 接受控制参数
+		scib_rx(&temp);
+		switch(variables_flag)
 		{
-			switch(sci_flag)
-			{
-			case 0: code_start = temp; break;
-			case 1: indexDA = temp; break;
-			}
+		case 0: code_start = temp; break;
+		case 1: indexDA = temp; break;
 		}
-		}
+
+		//scib_tx(1);
 	}
+	else if(received_data == 1 && ScibRegs.SCIFFRX.bit.RXFFST == 1)
+	{
+		received_data = 0;
+		ScibRegs.SCIFFRX.bit.RXFIFORESET = 0;  // reset RXFIFO
+		ScibRegs.SCIFFRX.bit.RXFIFORESET = 1;  // reenable RXFIFO
+	}
+	else if(ScibRegs.SCIFFRX.bit.RXFFST == 1)
+		received_data = 1;
+	else
+		received_data = 0;
 
 	// Acknowledge this interrupt to receive more interrupts from group 1
 	PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;

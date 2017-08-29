@@ -3,17 +3,17 @@
 ################################################################################
 
 # Each subdirectory must supply rules for building sources it contributes
+yssources/DAB_V2G_Active.obj: ../yssources/DAB_V2G_Active.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/include" --include_path="C:/Users/Itsys/Desktop/Code/DAB_V2G/Includes" --include_path="C:/Users/Itsys/Desktop/Code/DAB_V2G/ysincludes" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="yssources/DAB_V2G_Active.pp" --obj_directory="yssources" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
 yssources/DABcontrol.obj: ../yssources/DABcontrol.c $(GEN_OPTS) $(GEN_HDRS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C2000 Compiler'
 	"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/include" --include_path="C:/Users/Itsys/Desktop/Code/DAB_V2G/Includes" --include_path="C:/Users/Itsys/Desktop/Code/DAB_V2G/ysincludes" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="yssources/DABcontrol.pp" --obj_directory="yssources" $(GEN_OPTS__FLAG) "$<"
-	@echo 'Finished building: $<'
-	@echo ' '
-
-yssources/main.obj: ../yssources/main.c $(GEN_OPTS) $(GEN_HDRS)
-	@echo 'Building file: $<'
-	@echo 'Invoking: C2000 Compiler'
-	"C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Program Files/CCS/ccsv6/tools/compiler/c2000_6.2.5/include" --include_path="C:/Users/Itsys/Desktop/Code/DAB_V2G/Includes" --include_path="C:/Users/Itsys/Desktop/Code/DAB_V2G/ysincludes" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="yssources/main.pp" --obj_directory="yssources" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
