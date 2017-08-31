@@ -4,8 +4,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../yssources/DAB_V2G_Active.c \
-../yssources/DABcontrol.c \
+../yssources/PSFB_Control.c \
+../yssources/PSFB_V2G_PR.c \
 ../yssources/ysADC.c \
 ../yssources/ysCAN.c \
 ../yssources/ysDAC.c \
@@ -16,8 +16,8 @@ C_SRCS += \
 ../yssources/ysSPI.c 
 
 OBJS += \
-./yssources/DAB_V2G_Active.obj \
-./yssources/DABcontrol.obj \
+./yssources/PSFB_Control.obj \
+./yssources/PSFB_V2G_PR.obj \
 ./yssources/ysADC.obj \
 ./yssources/ysCAN.obj \
 ./yssources/ysDAC.obj \
@@ -28,8 +28,8 @@ OBJS += \
 ./yssources/ysSPI.obj 
 
 C_DEPS += \
-./yssources/DAB_V2G_Active.pp \
-./yssources/DABcontrol.pp \
+./yssources/PSFB_Control.pp \
+./yssources/PSFB_V2G_PR.pp \
 ./yssources/ysADC.pp \
 ./yssources/ysCAN.pp \
 ./yssources/ysDAC.pp \
@@ -40,8 +40,8 @@ C_DEPS += \
 ./yssources/ysSPI.pp 
 
 C_DEPS__QUOTED += \
-"yssources\DAB_V2G_Active.pp" \
-"yssources\DABcontrol.pp" \
+"yssources\PSFB_Control.pp" \
+"yssources\PSFB_V2G_PR.pp" \
 "yssources\ysADC.pp" \
 "yssources\ysCAN.pp" \
 "yssources\ysDAC.pp" \
@@ -52,8 +52,8 @@ C_DEPS__QUOTED += \
 "yssources\ysSPI.pp" 
 
 OBJS__QUOTED += \
-"yssources\DAB_V2G_Active.obj" \
-"yssources\DABcontrol.obj" \
+"yssources\PSFB_Control.obj" \
+"yssources\PSFB_V2G_PR.obj" \
 "yssources\ysADC.obj" \
 "yssources\ysCAN.obj" \
 "yssources\ysDAC.obj" \
@@ -64,8 +64,8 @@ OBJS__QUOTED += \
 "yssources\ysSPI.obj" 
 
 C_SRCS__QUOTED += \
-"../yssources/DAB_V2G_Active.c" \
-"../yssources/DABcontrol.c" \
+"../yssources/PSFB_Control.c" \
+"../yssources/PSFB_V2G_PR.c" \
 "../yssources/ysADC.c" \
 "../yssources/ysCAN.c" \
 "../yssources/ysDAC.c" \
